@@ -66,6 +66,7 @@ https://luquinhagamesoficial-cyber.github.io/voo666
 Criar **jogos cada vez mais avançados para navegador**  
 e compartilhar projetos **open source**.
 
----
+---<img width="1086" height="1448" alt="ChatGPT Image 6 de mai  de 2026, 15_31_12" src="https://github.com/user-attachments/assets/e763fdf8-de9b-4fdb-a324-443874c3702f" />
+
 
 ⭐ Se gostar dos projetos **deixe uma estrela nos repositórios!**
