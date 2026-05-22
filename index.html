@@ -1,103 +1,119 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Luquinha Games</title>
 
 <style>
 
-body{
+*{
 margin:0;
-font-family:Arial;
-background:#050510;
-color:white;
-overflow-x:hidden;
+padding:0;
+box-sizing:border-box;
 }
 
-canvas{
-position:fixed;
-top:0;
-left:0;
-z-index:-1;
-}
-
-/* LOADING */
-
-#loading{
-position:fixed;
-width:100%;
-height:100%;
-background:#000;
+body{
+height:100vh;
 display:flex;
-align-items:center;
 justify-content:center;
-font-size:50px;
-font-weight:bold;
-z-index:9999;
-animation:pulse 1s infinite;
+align-items:center;
+font-family:Arial, sans-serif;
+background:#000;
+overflow:hidden;
+color:white;
 }
 
-@keyframes pulse{
-0%{opacity:0.5}
-50%{opacity:1}
-100%{opacity:0.5}
+/* Fundo animado */
+body::before{
+content:"";
+position:absolute;
+width:300%;
+height:300%;
+background:
+radial-gradient(white 1px, transparent 1px);
+background-size:50px 50px;
+animation:space 80s linear infinite;
+opacity:0.25;
 }
 
-header{
+@keyframes space{
+0%{
+transform:translateY(0);
+}
+100%{
+transform:translateY(-1200px);
+}
+}
+
+.container{
+position:relative;
+z-index:2;
+background:rgba(0,0,0,0.75);
+padding:45px;
+border-radius:25px;
 text-align:center;
-padding:30px;
-font-size:40px;
-background:#0a0a20;
+border:2px solid #00ffee;
+box-shadow:
+0 0 20px #00ffee,
+0 0 40px #00ffee;
+backdrop-filter:blur(8px);
+width:90%;
+max-width:500px;
 }
 
-.section{
-padding:20px;
+.logo{
+font-size:42px;
+margin-bottom:10px;
 }
 
-.games{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-gap:20px;
+h1{
+font-size:38px;
+margin-bottom:15px;
+color:#00ffee;
+text-shadow:0 0 15px #00ffee;
 }
 
-.game{
-background:#111;
-border-radius:10px;
-padding:20px;
-text-align:center;
-cursor:pointer;
-transition:0.3s;
-font-size:20px;
-}
-
-.game:hover{
-transform:scale(1.05);
-background:#1b1b3a;
-}
-
-.star{
-font-size:20px;
-cursor:pointer;
-}
-
-input{
-padding:10px;
-border:none;
-border-radius:5px;
+p{
+margin-bottom:30px;
+font-size:18px;
+color:#ddd;
 }
 
 button{
-padding:10px;
+width:100%;
+padding:16px;
+margin:10px 0;
 border:none;
-background:#00ffcc;
+border-radius:14px;
+font-size:20px;
+font-weight:bold;
 cursor:pointer;
-border-radius:5px;
+transition:0.3s;
+color:white;
 }
 
-.leaderboard{
-background:#111;
-padding:10px;
-border-radius:10px;
+.pc{
+background:linear-gradient(45deg,#00ff88,#00cc66);
+}
+
+.mobile{
+background:linear-gradient(45deg,#0099ff,#00ccff);
+}
+
+.discord{
+background:linear-gradient(45deg,#5865F2,#7289DA);
+}
+
+button:hover{
+transform:scale(1.05);
+box-shadow:0 0 20px white;
+}
+
+.footer{
+margin-top:20px;
+font-size:14px;
+color:#aaa;
 }
 
 </style>
@@ -105,169 +121,45 @@ border-radius:10px;
 
 <body>
 
-<div id="loading">Luquinha Games</div>
+<div class="container">
 
-<header>🎮 Luquinha Games</header>
+<div class="logo">🎮</div>
 
-<div class="section">
-<h2>👤 Login</h2>
-<input id="playerName" placeholder="Seu nome">
-<button onclick="login()">Entrar</button>
-<p id="welcome"></p>
-</div>
+<h1>Luquinha Games</h1>
 
-<div class="section">
-<h2>🔥 Destaques</h2>
+<p>Escolha uma opção:</p>
 
-<div class="games">
+<button class="pc" onclick="pc()">
+💻 PC
+</button>
 
-<div class="game" onclick="play('https://luccabusscsm-creator.github.io/mansmorra-sombria/')">
-🏰 Mansmorra Sombria
-</div>
+<button class="mobile" onclick="mobile()">
+📱 Celular
+</button>
 
-<div class="game" onclick="play('https://luquinhagamesoficial-cyber.github.io/mansmorra-sombria-chapter2')">
-🏰 Chapter 2
-</div>
+<button class="discord" onclick="discord()">
+👥 Comunidade
+</button>
 
-<div class="game" onclick="play('https://luquinhagamesoficial-cyber.github.io/voo666')">
-✈️ Voo 666
-</div>
-
-<div class="game" onclick="play('https://classic.minecraft.net/')">
-⛏️ Minecraft Classic
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>🎮 Biblioteca de Jogos</h2>
-
-<div class="games">
-
-<div class="game" onclick="play('https://luquinha835.github.io/capy-care-/')">
-🐹 Capy Care
-</div>
-
-<div class="game" onclick="play('https://luquinha835.github.io/flypy-plane/')">
-✈️ Flypy Plane
-</div>
-
-<div class="game" onclick="play('https://luquinha835.github.io/aventura-peixe')">
-🐟 Aventura Peixe
-</div>
-
-<div class="game" onclick="play('https://luquinha835.github.io/nave-game')">
-🚀 Nave Space
-</div>
-
-<div class="game" onclick="play('https://luquinha835.github.io/desfio-matematico')">
-🧮 Desafio Matemático
-</div>
-
-<div class="game" onclick="play('https://luquinha835.github.io/marmot-game')">
-🔨 Bater na Marmota
-</div>
-
-<div class="game" onclick="play('https://luccabusscsm-creator.github.io/snake-game/')">
-🐍 Snake Game
-</div>
-
-<div class="game" onclick="play('https://luccabusscsm-creator.github.io/mansmorra-sombria/')">
-🏰 Mansmorra Sombria
-</div>
-
-<div class="game" onclick="play('https://www.figma.com/make/GzJgXyUa7kstmVc8ZNCpYD/Jogo-de-Terror-em-HTML?p=f&t=3iCBGKklE2VGvzEe-0&fullscreen=1')">
-👻 Mansão do Terror
-</div>
-
-</div>
-</div>
-
-<div class="section">
-<h2>🏆 Ranking de Jogadores</h2>
-
-<div class="leaderboard" id="leaderboard">
-1. Player123 - 1200 pts<br>
-2. GamerX - 980 pts<br>
-3. NoobMaster - 750 pts
+<div class="footer">
+Luquinha Games © 2026
 </div>
 
 </div>
 
 <script>
 
-/* LOADING */
-
-setTimeout(()=>{
-document.getElementById("loading").style.display="none";
-},2500)
-
-/* LOGIN */
-
-function login(){
-
-let name=document.getElementById("playerName").value
-
-localStorage.setItem("player",name)
-
-document.getElementById("welcome").innerText="Bem vindo "+name+" 👋"
-
+function pc(){
+window.location.href="https://luquinhagamesoficial-cyber.github.io/pc";
 }
 
-/* PLAY GAME */
-
-function play(url){
-
-window.open(url,"_blank")
-
+function mobile(){
+window.location.href="https://luquinha835.github.io/luquinha-games2";
 }
 
-/* BACKGROUND PARTICLES */
-
-const canvas=document.createElement("canvas")
-document.body.appendChild(canvas)
-
-const ctx=canvas.getContext("2d")
-
-canvas.width=window.innerWidth
-canvas.height=window.innerHeight
-
-let particles=[]
-
-for(let i=0;i<120;i++){
-particles.push({
-x:Math.random()*canvas.width,
-y:Math.random()*canvas.height,
-r:Math.random()*2
-})
+function discord(){
+window.location.href="https://discord.com/channels/1503897362202890351/1503897362752471227";
 }
-
-function draw(){
-
-ctx.clearRect(0,0,canvas.width,canvas.height)
-
-ctx.fillStyle="white"
-
-particles.forEach(p=>{
-
-ctx.beginPath()
-ctx.arc(p.x,p.y,p.r,0,Math.PI*2)
-ctx.fill()
-
-p.y+=0.3
-
-if(p.y>canvas.height){
-p.y=0
-}
-
-})
-
-requestAnimationFrame(draw)
-
-}
-
-draw()
 
 </script>
 
